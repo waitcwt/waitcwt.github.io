@@ -1,0 +1,16 @@
+<div class="detail">
+<form name="myform" ng-switch on="ison">
+<div style="text-align:center">
+<h4 style="text-align:center">{{file.title}} <i style="float:right;cursor:pointer;" ng-click="edit()" class="icon-pencil"></i></h4>
+<input ng-model="file.title" required type="text" ng-show="ison">
+</div>
+<textarea ng-model="file.content" name="content" required class="filetext" ng-show="ison">
+
+</textarea>
+<a class="btn" ng-show="ison" ng-click="save()"  ng-disabled="myform.$invalid">保存</a>
+<a class="btn" ng-click="cancel()" ng-show="ison">取消</a>
+<a class="btn" ng-click="del()" ng-show="ison">删除</a>
+<div class="filetext" ng-switch-when="false"  ng-bind="file.content">
+</div>
+</form>
+</div>

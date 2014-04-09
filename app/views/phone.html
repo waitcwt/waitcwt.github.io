@@ -1,0 +1,21 @@
+<div style="width:100%; margin-top:20px;" >
+
+<table class="table">
+<thead style="background-color:#6CF;color:white">
+<tr>
+<th style="width:30%">姓名</th>
+<th style="width:30%">电话</th>
+<th style="width:40%">地址</th>
+<th><a href="#/new"><i class="icon-plus-sign icon-white"></i></a></th>
+</tr>
+</thead>
+<tbody>
+  <tr style="color:#0088CC" data-type="{{book}}" ng-repeat="(name,book) in phonebooks">
+  <td>{{book.name}}</td>
+  <td>{{book.num}}</td>
+  <td>{{book.addr}}</td>
+  <td><a href="#/edit/{{name}}"><i class="icon-edit"></i></a></td>
+  </tr>
+</tbody>
+</table>
+</div>

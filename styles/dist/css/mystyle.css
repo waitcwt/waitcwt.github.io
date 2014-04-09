@@ -1,0 +1,50 @@
+@charset "utf-8";
+*{margin:0;padding:0}
+li{list-style:none;}
+.mylist{margin-top:20px;}
+.mylist li{height:200px; margin-bottom:20px; width:80%; border:1px solid #3A87AD; overflow:hidden}
+.mylist span{float:left; width:10px; background-color:#CCC; height:100%;}
+.mylist dl{margin-left:10px; padding-left:20px;padding-right:20px;}
+.mylist dt{margin-top:20px;font-size:20px;}
+.mylist dd, .filetext{line-height:26px;}
+.detail{margin-top:25px; border:1px solid #3A87AD;border-radius:0.5em; padding:10px 20px 30px;}
+.right{width:30%; float:left;}
+.left{width:65%;margin-left:35%;}
+textarea{width:100%;overflow-y:hidden; margin-left:-5px;height:400px; }
+.photoAnimate{
+	animation-name:spinning;
+	-moz-animation-name:spinning;
+	 -moz-animation-duration: 2s;
+	 	-webkit-animation-name:spinning;
+	 -webkit-animation-duration: 2s;
+	 position:relative;
+}
+.flip{
+	animation-name:flip;
+	-moz-animation-name:flip;
+	 -moz-animation-duration: 1s;
+	 	-webkit-animation-name:flip;
+	 -webkit-animation-duration: 1s;
+}
+           
+@-moz-keyframes spinning{
+	from { -moz-transform:rotateY(0deg) }
+	to { -moz-transform:rotateY(360deg)}
+}
+@-webkit-keyframes spinning{
+	from { -webkit-transform:rotateY(0deg) }
+	to { -webkit-transform:rotateY(360deg)}
+}
+@-moz-keyframes flip{
+	from { -moz-transform:rotateY(0deg) }
+	to { -moz-transform:rotateY(180deg)}
+}
+@-webkit-keyframes flip{
+	from { -webkit-transform:rotateY(0deg) }
+	to { -webkit-transform:rotateY(90deg)}
+}
+
+@media (max-width:640px){
+.right{width:80%;float:none;}
+.left{width:70%; margin-left:-20px;;}
+}

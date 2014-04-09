@@ -1,0 +1,34 @@
+define(function(require,exports,module){
+config =function($routeProvider){
+		$routeProvider.when('/',
+		{
+			controller:'indexController',
+			templateUrl:'app/views/index.html'
+		}).when('/phone',
+		{
+			controller:'PhoneController',
+			templateUrl:'app/views/phone.html'
+		}).when('/new',
+		{
+			controller:'addController',
+			templateUrl:'app/views/new.html'
+		}).when('/edit/:bookId',
+		{
+			controller:'PhoneController',
+			templateUrl:'app/views/new.html'
+		}).when('/imgs',
+		{
+			controller:'ImgController',
+			templateUrl:'app/views/imgs.html'
+		}).when('/other',
+		{
+			controller:'otherController',
+			templateUrl:'app/views/other.html'
+		}).when('/detail/:dataId',
+		{
+			controller:'detailController',
+			templateUrl:'app/views/detail.html'
+		})
+}
+module.exports = config;
+});
