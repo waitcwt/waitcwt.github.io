@@ -1,7 +1,7 @@
 define(function(require,exports,module){
 var factory={};
  factory.phoneBooks= function($firebase,fbURL){
-     return $firebase(new Firebase(fbURL));
+     return $firebase(new Firebase(fbURL+'phones'));
   }
  factory.Files= function($http){
 	var factory = {};

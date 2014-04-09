@@ -19,23 +19,18 @@
 		url ? getActive(url[0]):getActive('index');
 	}
 	//首页的controller
-	controller.indexController = function($scope,Files){
-		function getpage(num){
-			Files.getFiles(num).success(function(data){
-				 $scope.content=data.files.main;
-				 $scope.isshow="inline-block";
-				if($scope.page*2+$scope.content.length>=data.files.total){
-					$scope.isshow = $scope.page==0 ? "xx" :'none';
-				}				
-				 $scope.total = Math.ceil(data.files.total/2);
-		});
-		}
-		$scope.page = 0;
-		$scope.gopage=function(num){
-			 num==1 ? $scope.page++ : $scope.page--;
-			getpage($scope.page);
-		}
-		getpage(0);
+	controller.indexController = function($scope,Files,$timeout, $firebase, fbURL){
+	      var projectUrl = fbURL + 'blogs';
+		  $scope.blog = $firebase(new Firebase(projectUrl));   
+	}
+	controller.addBlogs = function($scope,Files,$timeout,$location, $firebase, fbURL){
+	      var projectUrl = fbURL + 'blogs';
+		  blogs = $firebase(new Firebase(projectUrl));   
+		  $scope.save = function() {
+		  blogs.$add($scope.content, function() {
+			$timeout(function() { $location.path('/'); });
+		  });
+		};
 	}
 	//二级页的controller
 	controller.detailController = function($scope,Files,$location,$routeParams){
@@ -68,7 +63,7 @@
 	controller.PhoneController = function($scope,$location,$timeout, $routeParams, $firebase, fbURL,phoneBooks){
 		$scope.phonebooks = phoneBooks;	
 		//phone 里面editBook
-		 var projectUrl = fbURL + $routeParams.bookId;
+		 var projectUrl = fbURL + 'phones/'+$routeParams.bookId;
 		  $scope.book = $firebase(new Firebase(projectUrl));   
 		  $scope.destroy = function() {
 			$scope.book.$remove();

@@ -4,6 +4,10 @@ config =function($routeProvider){
 		{
 			controller:'indexController',
 			templateUrl:'app/views/index.html'
+		}).when('/newblogs',
+		{
+			controller:'addBlogs',
+			templateUrl:'app/views/newblog.html'
 		}).when('/phone',
 		{
 			controller:'PhoneController',
