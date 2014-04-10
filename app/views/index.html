@@ -1,6 +1,6 @@
 <div style="width:100%;" >
 <ul class="mylist">
-<li ng-repeat="data in content"><span class="colum"></span><dl><dt>{{data.title}}</dt><dd><a href="#detail/{{page*2+$index}}" class="content">{{data.content}}</a><dd></dl></li>
+<li ng-repeat="data in blog"><span class="colum"></span><dl><dt>{{data.title}}</dt><dd><a href="#detail/{{page*2+$index}}" class="content">{{data.content}}</a><dd></dl></li>
 </ul>
 <div ng-switch on="isshow">
 <span>{{total}} 页</span>

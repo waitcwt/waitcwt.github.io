@@ -22,6 +22,7 @@
 	controller.indexController = function($scope,Files,$timeout, $firebase, fbURL){
 	      var projectUrl = fbURL + 'blogs';
 		  $scope.blog = $firebase(new Firebase(projectUrl));   
+		  console.log($scope.blog)
 	}
 	controller.addBlogs = function($scope,Files,$timeout,$location, $firebase, fbURL){
 	      var projectUrl = fbURL + 'blogs';
