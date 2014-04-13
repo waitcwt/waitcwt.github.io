@@ -1,48 +1,23 @@
-<!DOCTYPE html>
-<html ng-app="plunker">
-  <head>
-    <meta charset="utf-8" />
-    <title>AngularJS Plunker</title>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <link rel="stylesheet" href="style.css" />
-   <script src="js/lib/jquery.js"></script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="js/lib/angular.js"></script>
-  </head>
-  <body ng-controller="MainCtrl">
-    <example-directive></example-directive> 
-    (above should actually say "hi there", not "bar")
-  </body>
-  <script>
-  var app = angular.module('plunker', []);
-app.controller('MainCtrl', function($scope, $element) {
-	console.log($element);
-});
-app.directive('exampleDirective', function() {
-  return {
-    restrict: 'E',
-    template: '<child-directive></child-directive>',
-    controller: function($scope, $element){
-      // this will not work, since the child directives link 
-      // function was not yet run
-      $element.find('pre').text('hi there!');
-    },
-    link: function(scope, el){
-      // the logic really belongs in link, as the child directive
-      // uncomment this line to fix the problem
-      // el.find('pre').text('hi there!')
-    }
-  }
-});
-app.directive('childDirective', function() {
-  return {
-    restrict:  'E',
-    template: '<h1>bar</h1>',
-    replace: true,
-    link: function($scope, $element, attr){
-      // some awesome jquery pluggin which replaces things and bits
-      $element.replaceWith(angular.element('<pre>' +  $element.text() + '</pre>'));
-    }
-  }
-});
-  </script>
+ <script src="js/lib/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+<title>无标题文档</title>
+</head>
+
+<body>
+<div ng-controller="ctrl">
+<input ng-model="name" />
+{{name}}
+</div>
+</body>
+<script>
+var app = angular.module('app',['firebase']);
+app.controller('ctrl',function($scope,angularFire){
+	
+})
+</script>
 </html>

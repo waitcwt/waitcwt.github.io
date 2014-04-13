@@ -19,10 +19,13 @@
 		url ? getActive(url[0]):getActive('index');
 	}
 	//首页的controller
-	controller.indexController = function($scope,Files,$timeout, $firebase, fbURL){
+	controller.indexController = function($scope,Files,$timeout,  fbURL,$firebase){
 	      var projectUrl = fbURL + 'blogs';
-		  $scope.blog = $firebase(new Firebase(projectUrl));   
-		  console.log($scope.blog)
+		  var blog = $firebase(new Firebase(projectUrl));
+		  blog.$on('loaded',function(){
+				 $scope.total = blog.$getIndex().length/2;
+				  if($scope.total>1){$scope.next = true};
+		  }); 
 	}
 	controller.addBlogs = function($scope,Files,$timeout,$location, $firebase, fbURL){
 	      var projectUrl = fbURL + 'blogs';
