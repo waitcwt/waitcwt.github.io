@@ -21,20 +21,29 @@
 	//首页的controller
 	controller.indexController = function($scope,Files,$timeout,  fbURL,$firebase){
 	      var projectUrl = fbURL + 'blogs';
-		  var blog = $firebase(new Firebase(projectUrl));
-		  blog.$on('loaded',function(){
+		  var blog = '';
+		  function gopage(page){
+		      blog = $scope.blog = $firebase(new Firebase(projectUrl).startAt(null,page).limit(2));
+			  blog.$on('loaded',function(){
+				  console.log(blog);
 				 $scope.total = blog.$getIndex().length/2;
-				  if($scope.total>1){$scope.next = true};
-		  }); 
+				  if($scope.total>1 && scope.total>page-1){$scope.next = true};
+		    });
+		  }
+		  gopage('1');
 	}
 	controller.addBlogs = function($scope,Files,$timeout,$location, $firebase, fbURL){
-	      var projectUrl = fbURL + 'blogs';
+	      var projectUrl = fbURL + 'blogs';maxid=1;
 		  blogs = $firebase(new Firebase(projectUrl));   
-		  $scope.save = function() {
-		  blogs.$add($scope.content, function() {
+		  blogs.$on('loaded',function(){
+			  maxid = blogs.$getIndex() ? blogs.$getIndex().length+1:1;
+		 });
+		$scope.save = function(){
+           blogs[maxid]=$scope.content;
+		  blogs.$set(blogs, function() {  
 			$timeout(function() { $location.path('/'); });
 		  });
-		};
+		  }
 	}
 	//二级页的controller
 	controller.detailController = function($scope,Files,$location,$routeParams){
