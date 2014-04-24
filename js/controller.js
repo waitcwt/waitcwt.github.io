@@ -22,21 +22,34 @@
 	controller.indexController = function($scope,Files,$timeout,  fbURL,$firebase){
 	      var projectUrl = fbURL + 'blogs';
 		  var blog = '';
-		  function gopage(page){
-		      blog = $scope.blog = $firebase(new Firebase(projectUrl).startAt(null,page).limit(2));
-			  blog.$on('loaded',function(){
-				  console.log(blog);
-				 $scope.total = blog.$getIndex().length/2;
-				  if($scope.total>1 && scope.total>page-1){$scope.next = true};
-		    });
+		  $scope.loading = false;
+		  Paginator = require('./paginator.js');
+		  var paginator = new Paginator(new Firebase(projectUrl), 3);
+		  paginator.nextPage(loaded);
+		  $scope.gopage=function(dir){
+              dir===1 ? paginator.nextPage(loaded) :paginator.prevPage(loaded);
 		  }
-		  gopage('1');
+		  function loaded(vals){
+		  	var blogs = {};
+		   $scope.$apply(function () {
+	
+		  	$scope.loading = true;
+		  	$scope.prev = (paginator.isFirstPage()) ? false:true;
+		  	$scope.next = (paginator.isLastPage()) ? false :true;
+		  	angular.forEach(vals,function(v,k){
+				if(v){
+					blogs[k] =v;
+				}
+		  	})
+             $scope.blog = blogs;
+         });
+		  }
 	}
 	controller.addBlogs = function($scope,Files,$timeout,$location, $firebase, fbURL){
-	      var projectUrl = fbURL + 'blogs';maxid=1;
+	      var projectUrl = fbURL + 'blogs';maxid=0;
 		  blogs = $firebase(new Firebase(projectUrl));   
 		  blogs.$on('loaded',function(){
-			  maxid = blogs.$getIndex() ? blogs.$getIndex().length+1:1;
+			  maxid = blogs.$getIndex().length ? (blogs.$getIndex()[blogs.$getIndex().length-1]-0+1):0;
 		 });
 		$scope.save = function(){
            blogs[maxid]=$scope.content;
