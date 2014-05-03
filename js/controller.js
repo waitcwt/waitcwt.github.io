@@ -24,7 +24,7 @@
 		  var blog = '';
 		  $scope.loading = false;
 		  Paginator = require('./paginator.js');
-		  var paginator = new Paginator(new Firebase(projectUrl), 3);
+		  var paginator = new Paginator(new Firebase(projectUrl), 2);
 		  paginator.nextPage(loaded);
 		  $scope.gopage=function(dir){
               dir===1 ? paginator.nextPage(loaded) :paginator.prevPage(loaded);
@@ -32,7 +32,6 @@
 		  function loaded(vals){
 		  	var blogs = {};
 		   $scope.$apply(function () {
-	
 		  	$scope.loading = true;
 		  	$scope.prev = (paginator.isFirstPage()) ? false:true;
 		  	$scope.next = (paginator.isLastPage()) ? false :true;
@@ -59,12 +58,9 @@
 		  }
 	}
 	//二级页的controller
-	controller.detailController = function($scope,Files,$location,$routeParams){
-		var dataid = $routeParams.dataId;
-		$scope.file={};
-		Files.getFile(dataid).success(function(data){
-			$scope.file = data.file;
-		})
+	controller.detailController = function($scope,fbURL,$firebase,$location,$routeParams){
+		var projectUrl = fbURL + 'blogs/'+$routeParams.dataId;
+		 $scope.file = $firebase(new Firebase(projectUrl));  
 		$scope.edit=function(){
 			$scope.ison="edit"
 		}
