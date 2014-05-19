@@ -68,9 +68,8 @@
 			$scope.ison="false"
 		}
 		$scope.save=function(){
-		     Files.putFile(dataid,$scope.file).success(function(data){
-			 $scope.ison="false";
-		  })		
+		    $scope.file.$save();
+			 $scope.ison="false";		
 		}
 		$scope.del=function(){
 			Files.delFile(dataid).success(function(data){
@@ -100,33 +99,33 @@
 	//img 的controller
 	controller.ImgController = function($scope,Imgs){
 		//数据存成js文件，便于读写
-		Imgs.getImgs().success(function(data){
-			$scope.data = data.imgs;
-		});
-		timer = null;bigtime=null
+		$scope.data = [{"url":"http://p4.qhimg.com/t019685d0fd1ca509db.jpg","title":"关于实习","desc":"过程中得到的东上发个牢骚西是美好的"},{"url":"http://p7.qhimg.com/t011627a7f9fa43d220.jpg","title":"关于梦想","desc":"偶尔会以为这就是我想要的生活"},{"url":"http://p8.qhimg.com/t018978aeeb674073ae.jpg","title":"关于工作","desc":"孤独但是必须坚持的旅程"},{"url":"http://p0.qhimg.com/t017877ea1c1a57f812.jpg","title":"关于爱情","desc":"甜蜜却又忐忑的期待"}];
+		var timer = null,bigtimer;
+		var canHover = true;
 		$scope.enter = function(num){
-			if(bigtime)clearTimeout(bigtime);
-			bigtime = setTimeout(function(){
+			if(!canHover)return;
+			canHover = false;
+			bigtimer = setTimeout(function(){
 			var li = document.querySelectorAll('.li');
 			var div =li[num].querySelector('.front');
 			var end =li[num].querySelector('.end');
 			div.className='flip front';
-			if(timer) clearTimeout(timer);
 			timer = setTimeout(function(){
 			div.className='front'; div.style.display="none"; end.style.display="block"},400);
 			},200);
+	
 		}
 		$scope.leave=function(num){
-			if(bigtime) clearTimeout(bigtime);
-			if(timer) clearTimeout(timer);
+			if(bigtimer){canHover = true;clearTimeout(bigtimer);}
+			if(timer){canHover = true;clearTimeout(timer);} ;
 			var li = document.querySelectorAll('.li');
 			var div =li[num].querySelector('.front');
-						div.className = 'front';
+			div.className = 'front';
 			var end =li[num].querySelector('.end');
 			if(div.style.display=='none'){
 			end.className='flip end';
 			timer=setTimeout(function(){
-			end.className='end'; end.style.display="none"; div.style.display="block"},400);
+			end.className='end'; end.style.display="none"; div.style.display="block";canHover = true},400);
 			}
 		}
 		
