@@ -1,53 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>chenweiting_logs</title>
-<script src="js/lib/angular.js"></script>
-<script src="js/lib/sea.js"></script>
-<script src="js/lib/firebase.js"></script>
-<script src="js/lib/jquery.js"></script>
-<script src="js/lib/angularfire.js"></script>
-<link rel="stylesheet" href="styles/dist/css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="styles/dist/css/mystyle.css" type="text/css" />
-
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="no" />
+    <meta name="format-detection" content="telephone=no">
+	<title>微信电话本</title>
+	<link rel="stylesheet" type="text/css" href="../publish/css/style.css">
 </head>
 <body>
-<div style="width:80%; margin:0 auto; color:#09C">
-<div style="width:100%;" class="bs-example" ng-controller="headerController">
-      <ul class="nav nav-pills nav-justified">
-        <li  ng-repeat="tab in tabs" class="{{tab.isactive}}"><a ng-click="clk(tab.mark)" href="{{tab.url}}" ng-bind="tab.name"></a></li>
-      </ul>
-</div>
-<div class="container">
-<div class="right">
-<dl>
-<dt><img class="photoAnimate img" src="styles/dist/img/cwt.png"></dt>
-<dd class="bs-callout-info "><h4 class="text-info">@90后小前端一枚</h4></dd>
-<dd>
-<ul style="border:1px solid #09C;border-radius:0.3em; width:70%;" class="nav nav-pills nav-stacked">
- <li><a  style="color:#3A87AD">1990.11.17</a></li>
- <li><a  style="color:#3A87AD">现在在北京朝阳区</a></li>
- <li><a  style="color:#3A87AD">github:waitcwt</a></li>
- <li><a  style="color:#3A87AD">重庆:长寿</a></li>
- <li><a  style="color:#3A87AD">646766469@qq.com</a></li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="left" id="wrapper" ng-view>
-
-</div>
-</div>
-</div>
+	<div class="c_mod_header">
+		<img src="../img/banner.png">
+		<img class="c_mod_header_logo" src="../img/logo.png">
+	</div>
+	<div class="c_mod_prize">
+		<ul>
+			<li>
+				<p>一等奖</p>
+				<p><span class="c_icon_888"></span></p>
+				<p class="c_mod_prize_coin">Q币</p>
+				<p>（1名）</p>
+			</li>
+			<li>
+				<p>二等奖</p>
+				<p><span class="c_icon_100"></span></p>
+				<p class="c_mod_prize_coin">Q币</p>
+				<p>（12名）</p>
+			</li>
+			<li class="last">
+				<p>三等奖</p>
+				<p><span class="c_icon_30"></span></p>
+				<p class="c_mod_prize_coin">Q币</p>
+				<p>（100名）</p>
+			</li>
+		</ul>
+	</div>
+	<div class="c_mod_download">
+		<a class="c_mod_download_btn">
+			<span class="c_icon_download"></span>
+			<span>立即下载</span>
+		</a>
+		<p>获奖用户将从安装并注册微信电话本的用户中随机抽取，并以短信方式通知</p>
+	</div>
+	<div class="c_mod_info">
+		<div class="c_mod_info_part">
+			<img src="../img/call_free.png">
+			<h2>高清免费通话</h2>
+			<p>使用高清免费通话，随时随地畅聊。没有Wi-Fi，也仅需一点流量。</p>
+		</div>
+		<div class="c_mod_info_part">
+			<img src="../img/peple.png">
+			<h2>多人边玩边聊</h2>
+			<p>高清多人通话，和好友边玩边聊。清晰流畅的体验，给你加倍乐趣。</p>
+		</div>
+	</div>
+	<div class="c_mod_download c_no_border">
+		<a class="c_mod_download_btn">
+			<span class="c_icon_download"></span>
+			<span>立即下载</span>
+		</a>
+	</div>
+	<div class="c_mod_footer">
+		<img src="../img/footer.png">
+	</div>
 </body>
-<script>
-seajs.config({
-	base: './js'
-});
-seajs.use("main.js",function(){
-	 angular.bootstrap(document.documentElement,['iosApp']);
-});
-
+<script type="text/javascript" src="http://s5.qhimg.com/lib/jquery/191.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    var localId = null;
+	$('.c_icon_download').click(function recordVoice () {
+		wx.startRecord();
+	})
+	wx.stopRecord({
+    success: function (res) {
+         localId = res.localId;
+    }
+	});
+	$('.c_mod_header').click(function playVoice(){
+		wx.playVoice({localId:localId});
+	})
 </script>
 </html>

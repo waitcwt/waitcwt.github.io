@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>chenweiting_logs</title>
+<script src="js/lib/angular.js"></script>
+<script src="js/lib/sea.js"></script>
+<script src="js/lib/firebase.js"></script>
+<script src="js/lib/jquery.js"></script>
+<script src="js/lib/angularfire.js"></script>
+<link rel="stylesheet" href="styles/dist/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="styles/dist/css/mystyle.css" type="text/css" />
+
+</head>
+<body>
+<div style="width:80%; margin:0 auto; color:#09C">
+<div style="width:100%;" class="bs-example" ng-controller="headerController">
+      <ul class="nav nav-pills nav-justified">
+        <li  ng-repeat="tab in tabs" class="{{tab.isactive}}"><a ng-click="clk(tab.mark)" href="{{tab.url}}" ng-bind="tab.name"></a></li>
+      </ul>
+</div>
+<div class="container">
+<div class="right">
+<dl>
+<dt><img class="photoAnimate img" src="styles/dist/img/cwt.png"></dt>
+<dd class="bs-callout-info "><h4 class="text-info">@90后小前端一枚</h4></dd>
+<dd>
+<ul style="border:1px solid #09C;border-radius:0.3em; width:70%;" class="nav nav-pills nav-stacked">
+ <li><a  style="color:#3A87AD">1990.11.17</a></li>
+ <li><a  style="color:#3A87AD">现在在北京朝阳区</a></li>
+ <li><a  style="color:#3A87AD">github:waitcwt</a></li>
+ <li><a  style="color:#3A87AD">重庆:长寿</a></li>
+ <li><a  style="color:#3A87AD">646766469@qq.com</a></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="left" id="wrapper" ng-view>
+
+</div>
+</div>
+</div>
+</body>
+<script>
+seajs.config({
+	base: './js'
+});
+seajs.use("main.js",function(){
+	 angular.bootstrap(document.documentElement,['iosApp']);
+});
+
+</script>
+</html>
