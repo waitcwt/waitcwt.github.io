@@ -1,86 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<meta name="apple-mobile-web-app-capable" content="no" />
+	<title></title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="apple-mobile-web-app-capable" content="no" />
     <meta name="format-detection" content="telephone=no">
-	<title>微信电话本</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="utf-8">
+    <style type="text/css">
+    *{padding: 0;margin: 0;}
+    </style>
 </head>
 <body>
-	<div class="c_mod_header">
-		<img src="../img/banner.png">
-		<img class="c_mod_header_logo" src="../img/logo.png">
-	</div>
-	<div class="c_mod_prize">
-		<ul>
-			<li>
-				<p>一等奖</p>
-				<p><span class="c_icon_888"></span></p>
-				<p class="c_mod_prize_coin">Q币</p>
-				<p>（1名）</p>
-			</li>
-			<li>
-				<p>二等奖</p>
-				<p><span class="c_icon_100"></span></p>
-				<p class="c_mod_prize_coin">Q币</p>
-				<p>（12名）</p>
-			</li>
-			<li class="last">
-				<p>三等奖</p>
-				<p><span class="c_icon_30"></span></p>
-				<p class="c_mod_prize_coin">Q币</p>
-				<p>（100名）</p>
-			</li>
-		</ul>
-	</div>
-	<div class="c_mod_download">
-		<a class="c_mod_download_btn">
-			<span class="c_icon_download"></span>
-			<span>立即下载</span>
-		</a>
-		<p>获奖用户将从安装并注册微信电话本的用户中随机抽取，并以短信方式通知</p>
-	</div>
-	<div class="c_mod_info">
-		<div class="c_mod_info_part">
-			<img src="../img/call_free.png">
-			<h2>高清免费通话</h2>
-			<p>使用高清免费通话，随时随地畅聊。没有Wi-Fi，也仅需一点流量。</p>
-		</div>
-		<div class="c_mod_info_part">
-			<img src="../img/peple.png">
-			<h2>多人边玩边聊</h2>
-			<p>高清多人通话，和好友边玩边聊。清晰流畅的体验，给你加倍乐趣。</p>
-		</div>
-	</div>
-	<div class="c_mod_download c_no_border">
-		<a class="c_mod_download_btn">
-			<span class="c_icon_download"></span>
-			<span>立即下载</span>
-		</a>
-	</div>
-	<div class="c_mod_footer">
-		<img src="../img/footer.png">
-	</div>
+<div class="wrap">
+	<div class="item" style="background-color: red"></div>
+	<div class="item" style="background-color: blue"></div>
+	<div class="item" style="background-color: yellow"></div>
+</div>
 </body>
 <script type="text/javascript" src="http://s5.qhimg.com/lib/jquery/191.js"></script>
-<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="js/drag.js"></script>
 <script type="text/javascript">
-    var localId = null;
-    setTimeout(function(){
-    	$('.c_mod_download_btn').click(function recordVoice () {
-		wx.startRecord();
-	})
-	wx.stopRecord({
-    success: function (res) {
-         localId = res.localId;
-    }
-	});
-	$('.c_mod_header').click(function playVoice(){
-		wx.playVoice({localId:localId});
-	})
-},3000)
-	
+	Dragend({});
 </script>
 </html>
