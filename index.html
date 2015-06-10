@@ -16,14 +16,17 @@
 </head>
 <body>
 <div class="wrap">
-	<div class="item" style="background-color: red"></div>
-	<div class="item" style="background-color: blue"></div>
-	<div class="item" style="background-color: yellow"></div>
+	<div class="section" style="background-color: red"></div>
+	<div class="section" style="background-color: blue"></div>
+	<div class="section" style="background-color: yellow"></div>
 </div>
 </body>
 <script type="text/javascript" src="http://s5.qhimg.com/lib/jquery/191.js"></script>
-<script type="text/javascript" src="js/drag.js"></script>
+<script type="text/javascript" src="js/fullpage.js"></script>
 <script type="text/javascript">
-	Dragend({});
+	$(document).ready(function() {
+    $('.wrap').fullpage();
+});
+
 </script>
 </html>
